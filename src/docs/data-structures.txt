@@ -106,16 +106,32 @@ constant b: any = (int8)"54";
 
  // STRUCTURES
 
+    interface Govon {
+        do method1(&self, forint: Zalupa);
+    }   
+
+    struct Children (
+        fieldOne: str `json:field_one`,
+    );
+
     struct Aboba (
         fieldOne: str `json:field_one`,
         fieldTwo: int8 `json:field_two`,
+        fieldThree: Children,
     );
 
-    realize Aboba (
-        do method1[&self, a: str, b: int8] (
+    realize Govon into Aboba (
+        do method1[&self, a: str, b: int8] ()
+    );
 
+    define someVar: Aboba = Aboba(
+        fieldOne: "asdasd",
+        fieldThree: Children(
+            fieldOne: "asdasd",
         )
-    );
+    )
+
+    someVar.method1[1,2,3];
 
     type Aboba = int8;
 
