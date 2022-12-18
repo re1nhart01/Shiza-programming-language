@@ -1,0 +1,122 @@
+//VARIABLES:
+define a: str = "445424";
+a @= 5454;
+constant b: any = (int8)"54";
+
+
+// OPERATORS
+
+ <
+ >
+ >=
+ <=
+ =
+ ==
+ !=
+ and
+ or
+ !variable
+ +-\*
+ ^2
+ 2//2
+ 2%0 == 2
+ 
+& - AND
+| - OR
+~ - NOT
+^ - XOR
+<< >> - 1 bit
+<<< >>> - 1 byte
+
+
+
+
+//(ZA)LOOPS
+
+    zxc a (
+        define b: int8 = 65457565 - a;
+    )
+
+    loop a @= 54; a <= 1000; a++ {
+
+    }
+
+    forever {
+
+    }
+
+    forever a {
+
+    }
+
+    loop a in ()int8{1,2,3,4,5} {
+
+    } 
+
+    loop key, value in ()int8{1,2,3,4,5} {
+
+    } 
+
+    loop a != b {
+
+    }
+
+    patriot a {   @@pashalka
+        @@ a is "SLAVA UKRAINI"
+    }
+
+
+//FUNCTIONS
+
+
+    do main[] ( @@ main function
+
+    )
+
+    do something[a: int8, b: int16] int8:int16 (
+        return a, b;
+    )
+
+      do something[a: int8, b: int16] int8 (
+        return a;
+    )
+
+    do something[a: int8, b: int16] int8 (
+        return a;
+    )
+
+    something[]; // function call
+
+    a @= do [a: str] (
+
+    )[]
+
+// CONDITIONALS
+
+    when a != b (
+
+    ) other when b == c (
+
+    ) other (
+
+    )
+
+ a ? b : c; - ternary
+
+
+ // STRUCTURES
+
+    struct Aboba (
+        fieldOne: str `json:field_one`,
+        fieldTwo: int8 `json:field_two`,
+    );
+
+    realize Aboba (
+        do method1[&self, a: str, b: int8] (
+
+        )
+    );
+
+    type Aboba = int8;
+
+ //REGEXP - not implemented!
