@@ -22,10 +22,14 @@ int64
 float32
 float64
 
-& * - pointer symbols
-
-int8(){1,2,3,4,5,6}
-(){1,2,3,4,5,6}
-
-
 nix - like void
+
+any - any type actually
+
+Complex:
+
+* - pointer symbol
+& - address
+
+()int8{1,2,3} - slice
+(4)int8{1,23,4,5,6} - array
