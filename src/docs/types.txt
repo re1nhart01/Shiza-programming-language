@@ -1,2 +1,31 @@
 Data types:
 
+str - "sadasdas" `@()`
+bool - true, false 
+nil - nil
+char - "a"
+rune - 'weasdadasd'
+int - int64
+byte - 0 - 255
+binary - 0 or 1 
+
+uint8
+uint16
+uint32
+uint64
+
+int8
+int16
+int32
+int64
+
+float32
+float64
+
+& * - pointer symbols
+
+int8(){1,2,3,4,5,6}
+(){1,2,3,4,5,6}
+
+
+nix - like void
