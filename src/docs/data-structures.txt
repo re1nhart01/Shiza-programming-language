@@ -1,7 +1,8 @@
 //VARIABLES:
 define a: str = "445424";
-a @= 5454;
 constant b: any = (int8)"54";
+
+a @= 5454; // short form
 
 
 // OPERATORS
@@ -106,8 +107,8 @@ constant b: any = (int8)"54";
 
  // STRUCTURES
 
-    interface Govon {
-        do method1(&self, forint: Zalupa);
+    interface Govon<T> {
+        do method1(&self, forint: T);
     }   
 
     struct Children (
@@ -135,4 +136,46 @@ constant b: any = (int8)"54";
 
     type Aboba = int8;
 
+
+    count a {   // enum analog
+        BOBER  = "SOMEMEMEME",
+        BOBER1 = "SOMEMEMEME",
+        BOBER2 = "SOMEMEMEME",
+        BOBER3 = "SOMEMEMEME",
+        BOBER4 = "SOMEMEMEME",
+        BOBER5 = "SOMEMEMEME",
+    }
+
+
+//ANOTHER KEYWORDS
+
+defer - from golang;
+
+
+shot (                  //try/catch/finally analog
+
+) miss[ex error] (
+
+)  but (
+
+)
+
+
+//GENERICS
+
+    <T> - default writing
+
+    <int8>SomeVariable - cast
+
+      do something<T>[a: int8, b: T] int8:T (
+        return a, b;
+    )
+
+    <T extends Type>
+
+//   
+
+
  //REGEXP - not implemented!
+ //THREADS - not implemented!
+ //ASYNCHRONOUS - not implemented!
