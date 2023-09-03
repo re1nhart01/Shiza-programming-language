@@ -1,9 +1,8 @@
 #include <cstdio>
 #include <iostream>
-#include "./argv/opts.cc"
-int main (int argc, char *argv[])
-{
-	std::cout << "Hello, World!" << std::endl;
-	printf("Hello, World!\n");
+using namespace std;
+
+int main (int argc, char *argv[]) {
+  cout << "Hello Shiza";
 	return 0;
 }
