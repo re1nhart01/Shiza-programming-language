@@ -1,0 +1,7 @@
+namespace opts {
+	
+	class OptParser {
+
+	};
+	
+}
