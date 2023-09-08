@@ -13,4 +13,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 add_executable(shiza src/main.cc)
 
 # I guess this sucks, but for now let it be. We will have to change it later
-target_compile_options(shiza PRIVATE -Wall -Wextra)
+
+if (!WIN32)
+	target_compile_options(shiza PRIVATE -Wall -Wextra)
+endif()
