@@ -29,6 +29,7 @@ void BaseTesting::privatka() {
 void Testing::readFromFile(const std::string filename) {
   std::ifstream myfile;
   char mychar;
+  cout << filename << "asd";
   myfile.open(filename);
 //  if (myfile.is_open()) {
 //    while (myfile) {
@@ -37,6 +38,7 @@ void Testing::readFromFile(const std::string filename) {
 //      std::cout << "\n";
 //    }
 //  }
+  cout << myfile.is_open();
     if (myfile.is_open()) {
       std::string mystring;
       while (myfile.good()) {

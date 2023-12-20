@@ -55,20 +55,20 @@ char world[] = "earth";
 int notMain () {
   myStruct zzz = {.zxc =  54, .s =  "sadasd"};
 
-  
-  __asm // start ASM code here
-  {
-  mov  eax, offset world
-  push eax
-  mov  eax, offset hello
-  push eax
-  mov  eax, offset format
-  push eax
-  call printf
-  pop  ebx
-  pop  ebx
-  pop  ebx
-  } // end o
+//
+//  __asm // start ASM code here
+//  {
+//  mov  eax, offset world
+//  push eax
+//  mov  eax, offset hello
+//  push eax
+//  mov  eax, offset format
+//  push eax
+//  call printf
+//  pop  ebx
+//  pop  ebx
+//  pop  ebx
+//  } // end o
 
   User user("dasda");
   user.aboba = "asdas";
@@ -95,9 +95,9 @@ int notMain () {
 
   //  test.zabuza();
   cout << test + test1;
-#if FLAG_DEBUG
-  test.readFromFile("buzz.txt");
-#endif
+//#if FLAG_DEBUG
+  test.readFromFile(".\\main.txt");
+//#endif
   bruh<int, Testing>(54, test);
 
   return 0;

@@ -1,0 +1,8 @@
+#[path = ""]
+mod src {
+    #[path = "lib"]
+    mod shiza_library {
+        #[path = "shiza_fs.rs"]
+        mod filesystem;
+    }
+}
