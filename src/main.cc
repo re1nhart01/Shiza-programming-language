@@ -1,12 +1,18 @@
 #include "ast.h"
 #include "helpers.cc"
+#include "keywords.cc"
 #include <cstdio>
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <typeindex>
 #include <vector>
-using namespace std;
+#include "string.h"
 
+#define __DEV__ // __PROD__ || __DEV__
+
+using namespace std;
+using namespace shiza::tokens;
 namespace shiza {
 
 // lib for unicode will be called - unidroch
@@ -54,7 +60,7 @@ public:
     this->col = 0;
   }
   void runLexicalAnalysis(std::ifstream& fileStream);
-  shiza::ast::ASTNode* lookingForNode(std::string line) const;
+  void lookingForNode(std::string line, std::ifstream& fileStream) const;
 };
 
 void Lexer::runLexicalAnalysis(std::ifstream& fileStream) {
@@ -68,22 +74,48 @@ void Lexer::runLexicalAnalysis(std::ifstream& fileStream) {
       unsigned long sizeOfLine = currentLine.size();
       if (sizeOfLine != 0) {
         shiza::helpers::trim(currentLine);
-        cout << currentLine << endl;
+        this->lookingForNode(currentLine, fileStream);
       }
     }
   }
   fileStream.close();
 }
 
-shiza::ast::ASTNode* Lexer::lookingForNode(std::string line) const {
+void Lexer::lookingForNode(std::string line, std::ifstream& fileStream) const {
  std::string curr = line;
- int localPos = 0;
+ int startPos = 0;
+ int endPos = 0;
+ bool isStringOpened = false;
  shiza::helpers::trim(curr);
- while(localPos < line.length()) {
+ while(endPos < line.length()) {
+   endPos++;
+   std::string substrOfLine = line.substr(startPos, endPos);
+   cout << substrOfLine << endl;
 
-   localPos++;
+   if (substrOfLine == DEFINE_KEYWORD) {
+   } else if (substrOfLine == PACKAGE_KEYWORD) {
+   } else if (substrOfLine == FUNCTION_KEYWORD) {
+
+   } else if (substrOfLine == LOGGIN_KEYWORD) {
+   } else if (substrOfLine == LEFT_BRACKET) {
+   } else if (substrOfLine == RIGHT_BRACKET) {
+   } else if (substrOfLine == LEFT_PARENTHESIS) {
+   } else if (substrOfLine == RIGHT_PARENTHESIS) {
+   } else if (substrOfLine == SEMICOLON) {
+   } else if (substrOfLine == ASSIGNMENT) {
+   } else if (substrOfLine == STRING_LITERAL) {
+     isStringOpened = !isStringOpened;
+   } else if (substrOfLine == MULTILINE_STRING_LITERAL) {
+     isStringOpened = !isStringOpened;
+   } else {
+   }
+  if (!isStringOpened) {
+    if (line[endPos] != ' ' && endPos < line.length()) {
+
+    }
+  }
+
  }
- return NULL;
 };
 
 __INHERIT_NODE__ tester() {
@@ -120,6 +152,9 @@ std::ifstream FS::read(const std::string filePath) {
 
 
 int main (int argc, char **argv) {
+#ifdef __DEV__
+    cout << ">>> SHIZA DEVELOPMENT MODE <<<" << endl;
+#endif
   shiza::FS fs;
   shiza::Lexer lexer;
   std::ifstream file = fs.read("C:\\Users\\Evgeniy\\Documents\\GitHub\\Shiza-programming-language\\src\\main.bmx");
