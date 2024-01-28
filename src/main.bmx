@@ -7,12 +7,14 @@ do main[] (
  log "               you are not a father                    ";
  log `
 
-
- axdasdasd a
-
-
+go<int>!(
+ package main
 
 
 
- `
+ func main() {
+  fmt.Println("zxc")
+}
+
+)
 )

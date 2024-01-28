@@ -1,0 +1,11 @@
+{
+   "opts": {
+        
+    },
+    "inserts": {
+        "go": {
+            cmdExec: "go run",
+            cmdExecMainFile: "main.go"
+        },
+    }
+}
