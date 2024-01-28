@@ -2,6 +2,9 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include <iostream>
+
+
 
 namespace shiza::helpers {
 static inline void ltrim(std::string &s) {
@@ -35,6 +38,29 @@ static inline std::vector<std::string> splitStringWithWhitespace(const std::stri
   }
 
   return result;
+}
+
+static inline std::vector<std::string> splitWithSpaces(const std::string& input) {
+    std::vector<std::string> result;
+    std::string currentWord;
+
+    for (char c : input) {
+        if (c != ' ') {
+            currentWord += c;
+        } else {
+            if (!currentWord.empty()) {
+              result.push_back(currentWord);
+              currentWord.clear();
+            }
+            result.push_back(" ");
+        }
+    }
+
+    if (!currentWord.empty()) {
+      result.push_back(currentWord);
+    }
+
+    return result;
 }
 
 }

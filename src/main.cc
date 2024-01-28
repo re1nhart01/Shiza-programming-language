@@ -1,9 +1,12 @@
 #include "ast.h"
 #include "helpers.cc"
+#include "global.cc"
 #include "keywords.cc"
 #include <cstdio>
+#include <functional>
 #include <iostream>
 #include <fstream>
+#include <map>
 #include <string>
 #include <typeindex>
 #include <vector>
@@ -14,7 +17,6 @@
 using namespace std;
 using namespace shiza::tokens;
 namespace shiza {
-
 // lib for unicode will be called - unidroch
 
 class ArgParser {
@@ -55,10 +57,14 @@ public:
   std::vector<void*> tokenList;
   int col;
   int row;
+  bool isStringOpened;
+  bool isBracketOpened;
   Lexer() {
     this->tokenList = std::vector<void*>{ 0 };
     this->row = 0;
     this->col = 0;
+    this->isStringOpened = false;
+    this->isBracketOpened = false;
   }
   void runLexicalAnalysis(std::ifstream& fileStream);
   void lookingForNode(std::string line, std::ifstream& fileStream) const;
@@ -123,8 +129,19 @@ void Lexer::lookingForNode(std::string line, std::ifstream& fileStream) const {
      std::string curr = line;
      int startPos = 0;
      int endPos = 0;
-     bool isStringOpened = false;
-     shiza::helpers::trim(curr);
+     if (!this->isStringOpened) {
+       shiza::helpers::trim(curr);
+     }
+     vector<std::string> currentLineByNodes = shiza::helpers::splitWithSpaces(curr);
+     for (std::string node : currentLineByNodes) {
+        if (!this->isStringOpened) {
+          if (node != " ") {
+            
+          }
+        } else {
+          ss_todo();
+        }
+     }
 };
 
 __INHERIT_NODE__ tester() {
