@@ -31,6 +31,7 @@ struct __INHERIT_NODE__ {
 };
 
 
+
 class Token {
   int col;
   int row;
@@ -81,41 +82,49 @@ void Lexer::runLexicalAnalysis(std::ifstream& fileStream) {
   fileStream.close();
 }
 
+//void Lexer::lookingForNode(std::string line, std::ifstream& fileStream) const {
+// std::string curr = line;
+// int startPos = 0;
+// int endPos = 0;
+// bool isStringOpened = false;
+// shiza::helpers::trim(curr);
+// while(endPos < line.length()) {
+//   endPos++;
+//   std::string substrOfLine = line.substr(startPos, endPos);
+//   cout << substrOfLine << endl;
+//
+//   if (substrOfLine == DEFINE_KEYWORD) {
+//   } else if (substrOfLine == PACKAGE_KEYWORD) {
+//   } else if (substrOfLine == FUNCTION_KEYWORD) {
+//   } else if (substrOfLine == LOGGIN_KEYWORD) {
+//   } else if (substrOfLine == LEFT_BRACKET) {
+//   } else if (substrOfLine == RIGHT_BRACKET) {
+//   } else if (substrOfLine == LEFT_PARENTHESIS) {
+//   } else if (substrOfLine == RIGHT_PARENTHESIS) {
+//   } else if (substrOfLine == SEMICOLON) {
+//   } else if (substrOfLine == ASSIGNMENT) {
+//   } else if (substrOfLine == STRING_LITERAL) {
+//     isStringOpened = !isStringOpened;
+//   } else if (substrOfLine == MULTILINE_STRING_LITERAL) {
+//     isStringOpened = !isStringOpened;
+//   } else {
+//
+//   }
+//  if (!isStringOpened) {
+//    if (line[endPos] != ' ' && endPos < line.length()) {
+//
+//    }
+//  }
+//
+// }
+//};
+
 void Lexer::lookingForNode(std::string line, std::ifstream& fileStream) const {
- std::string curr = line;
- int startPos = 0;
- int endPos = 0;
- bool isStringOpened = false;
- shiza::helpers::trim(curr);
- while(endPos < line.length()) {
-   endPos++;
-   std::string substrOfLine = line.substr(startPos, endPos);
-   cout << substrOfLine << endl;
-
-   if (substrOfLine == DEFINE_KEYWORD) {
-   } else if (substrOfLine == PACKAGE_KEYWORD) {
-   } else if (substrOfLine == FUNCTION_KEYWORD) {
-
-   } else if (substrOfLine == LOGGIN_KEYWORD) {
-   } else if (substrOfLine == LEFT_BRACKET) {
-   } else if (substrOfLine == RIGHT_BRACKET) {
-   } else if (substrOfLine == LEFT_PARENTHESIS) {
-   } else if (substrOfLine == RIGHT_PARENTHESIS) {
-   } else if (substrOfLine == SEMICOLON) {
-   } else if (substrOfLine == ASSIGNMENT) {
-   } else if (substrOfLine == STRING_LITERAL) {
-     isStringOpened = !isStringOpened;
-   } else if (substrOfLine == MULTILINE_STRING_LITERAL) {
-     isStringOpened = !isStringOpened;
-   } else {
-   }
-  if (!isStringOpened) {
-    if (line[endPos] != ' ' && endPos < line.length()) {
-
-    }
-  }
-
- }
+     std::string curr = line;
+     int startPos = 0;
+     int endPos = 0;
+     bool isStringOpened = false;
+     shiza::helpers::trim(curr);
 };
 
 __INHERIT_NODE__ tester() {
@@ -127,12 +136,23 @@ __INHERIT_NODE__ tester() {
 class Parser {};
 
 class Error {
+protected:
+  std::string errorType;
+public:
   bool hasError;
   std::string stackTrace;
-public:
   Error(const std::string stackTrace) {
     this->stackTrace = stackTrace;
     this->hasError = sizeof(stackTrace) != 0;
+    this->errorType = "kernel_error!";
+  }
+};
+
+class LexicalError final : public Error {
+  LexicalError(const std::string stackTrace) : Error(stackTrace) {
+    this->stackTrace = stackTrace;
+    this->hasError = sizeof(stackTrace) != 0;
+    this->errorType = "lexer_error!";
   }
 };
 

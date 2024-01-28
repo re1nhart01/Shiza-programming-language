@@ -1,5 +1,7 @@
 
 #include <string>
+#include <vector>
+#include <sstream>
 
 namespace shiza::helpers {
 static inline void ltrim(std::string &s) {
@@ -18,4 +20,21 @@ static inline void trim(std::string &s) {
   rtrim(s);
   ltrim(s);
 }
+
+static inline std::vector<std::string> splitStringWithWhitespace(const std::string& input) {
+  std::vector<std::string> result;
+  std::istringstream stream(input);
+  std::string token;
+
+  while (std::getline(stream, token, ' ')) {
+    result.push_back(token);
+    if (!stream.eof()) {
+      // Add the space that was used as the delimiter
+      result.push_back(" ");
+    }
+  }
+
+  return result;
+}
+
 }
