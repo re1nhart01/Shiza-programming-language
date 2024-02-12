@@ -12,7 +12,7 @@
 #include <vector>
 #include "string.h"
 
-#define __DEV__ // __PROD__ || __DEV__
+#define __DEV__ // __PROD__ || __DEV__ || __DEVOPUS__ || __PUMB__
 
 using namespace std;
 using namespace shiza::tokens;
@@ -133,6 +133,7 @@ void Lexer::lookingForNode(std::string line, std::ifstream& fileStream) const {
        shiza::helpers::trim(curr);
      }
      vector<std::string> currentLineByNodes = shiza::helpers::splitWithSpaces(curr);
+     ss_print_vector(currentLineByNodes);
      for (std::string node : currentLineByNodes) {
         if (!this->isStringOpened) {
           if (node != " ") {
@@ -194,7 +195,7 @@ int main (int argc, char **argv) {
 #endif
   shiza::FS fs;
   shiza::Lexer lexer;
-  std::ifstream file = fs.read("C:\\Users\\Evgeniy\\Documents\\GitHub\\Shiza-programming-language\\src\\main.bmx");
+  std::ifstream file = fs.read("C:\\Users\\eugen\\GitHub\\Shiza-programming-language\\src\\main.bmx");
   lexer.runLexicalAnalysis(file);
   shiza::__INHERIT_NODE__ root = shiza::tester();
   cout << root.name << endl;

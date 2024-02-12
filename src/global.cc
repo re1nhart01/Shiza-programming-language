@@ -33,3 +33,11 @@ extern void ss_todo(bool show = false) {
     std::cout << "TODO!" << std::endl;
   }
 }
+
+template <typename T>
+extern void ss_print_vector(const std::vector<T> vectorOfElements) {
+    for (auto i : vectorOfElements) {
+        std::cout << i << ",";
+    }
+    std::cout << "\n";
+}
