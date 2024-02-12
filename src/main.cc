@@ -52,6 +52,11 @@ class Linker {
 
 };
 
+class LexerFunc {
+    virtual ~LexerFunc();
+    static __INHERIT_NODE__ lex_package_node(vector<std::string> currLine);
+};
+
 class Lexer {
 public:
   std::vector<void*> tokenList;
@@ -67,18 +72,19 @@ public:
     this->isBracketOpened = false;
   }
   void runLexicalAnalysis(std::ifstream& fileStream);
-  void lookingForNode(std::string line, std::ifstream& fileStream) const;
+  void lookingForNode(std::string line, std::ifstream& fileStream);
 };
 
 void Lexer::runLexicalAnalysis(std::ifstream& fileStream) {
-  //  cout << fileStream.is_open();
   if (fileStream.is_open()) {
     std::string currentLine;
-    int localCol = 0;
-    int localRow = 0;
     while (fileStream.good()) {
       getline(fileStream, currentLine);
       unsigned long sizeOfLine = currentLine.size();
+
+      //to explicit empty lines
+      Lexer::row++;
+
       if (sizeOfLine != 0) {
         shiza::helpers::trim(currentLine);
         this->lookingForNode(currentLine, fileStream);
@@ -125,24 +131,29 @@ void Lexer::runLexicalAnalysis(std::ifstream& fileStream) {
 // }
 //};
 
-void Lexer::lookingForNode(std::string line, std::ifstream& fileStream) const {
+void Lexer::lookingForNode(std::string line, std::ifstream& fileStream) {
      std::string curr = line;
-     int startPos = 0;
-     int endPos = 0;
+     Lexer::col = 0;
+
      if (!this->isStringOpened) {
        shiza::helpers::trim(curr);
      }
+     // hint: this vector contains separated string with spaces like: "an 100 apples" ["an", " ", "100", " ", "apples"]
      vector<std::string> currentLineByNodes = shiza::helpers::splitWithSpaces(curr);
      ss_print_vector(currentLineByNodes);
      for (std::string node : currentLineByNodes) {
         if (!this->isStringOpened) {
-          if (node != " ") {
-            
+          if (node != " " && node != ";") {
+              Lexer::col+= node.size();
+              
+          } else {
+              Lexer::col++;
           }
         } else {
           ss_todo();
         }
      }
+     cout << Lexer::row << " " << Lexer::col << endl;
 };
 
 __INHERIT_NODE__ tester() {

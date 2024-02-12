@@ -55,14 +55,15 @@ static inline std::vector<std::string> splitWithSpaces(const std::string& input)
     std::string currentWord;
 
     for (char c : input) {
-        if (c != ' ') {
+        if (c != ' ' && c != ';') {
             currentWord += c;
         } else {
             if (!currentWord.empty()) {
               result.push_back(currentWord);
               currentWord.clear();
             }
-            result.push_back(" ");
+            std::string charStr = std::string(1, c);
+            result.push_back(charStr);
         }
     }
 
