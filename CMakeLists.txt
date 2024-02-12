@@ -14,6 +14,4 @@ add_executable(shiza src/main.cc)
 
 # I guess this sucks, but for now let it be. We will have to change it later
 
-if (!WIN32)
-	target_compile_options(shiza PRIVATE -Wall -Wextra)
-endif()
+target_compile_options(shiza PRIVATE -Wall)
