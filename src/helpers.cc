@@ -23,6 +23,17 @@ static inline void trim(std::string &s) {
   ltrim(s);
 }
 
+   static void removeFirstOccurrences(std::string& str, const std::string& subStr)
+    {
+        // Find position of substring in string
+        size_t pos = str.find(subStr);
+        if (pos != std::string::npos)
+        {
+            // Remove found substring from string
+            str.erase(pos, subStr.length());
+        }
+    }
+
 static inline std::vector<std::string> splitStringWithWhitespace(const std::string& input) {
   std::vector<std::string> result;
   std::istringstream stream(input);

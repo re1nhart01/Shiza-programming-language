@@ -32,7 +32,14 @@
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&@ ..@@@(@@@@@@@@@@@@@@@
 
 extern std::string ss_get_root_path() {
-	return std::filesystem::current_path().string();
+#ifdef _WIN32
+    std::string cwd = std::filesystem::current_path().string();
+    shiza::helpers::removeFirstOccurrences(cwd, "build");
+    std::cout << cwd << std::endl;
+    return cwd;
+#else
+    return std::filesystem::current_path().string();
+#endif
 }
 
 extern void ss_todo(bool show = false) {
