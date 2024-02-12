@@ -32,7 +32,7 @@
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&@ ..@@@(@@@@@@@@@@@@@@@
 
 extern std::string ss_get_root_path() {
-	return std::filesystem::current_path();
+	return std::filesystem::current_path().string();
 }
 
 extern void ss_todo(bool show = false) {
