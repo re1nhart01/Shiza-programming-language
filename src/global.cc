@@ -31,6 +31,15 @@
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@.,,,*,,,.@@@@@@@@@@@@@@
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&@ ..@@@(@@@@@@@@@@@@@@@
 
+
+extern void ss_UNSAFE_clear_console() {
+#ifdef _WIN32
+    system("cls");
+#else
+    system("clear");
+#endif
+}
+
 extern std::string ss_get_root_path() {
 #ifdef _WIN32
     std::string cwd = std::filesystem::current_path().string();

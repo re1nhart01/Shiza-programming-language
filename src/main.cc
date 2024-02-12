@@ -191,8 +191,10 @@ std::ifstream FS::read(const std::string filePath) {
 
 int main (int argc, char **argv) {
 #ifdef __DEV__
+    ss_UNSAFE_clear_console();
     cout << ">>> SHIZA DEVELOPMENT MODE <<<" << endl;
 #endif
+
   shiza::FS fs;
   shiza::Lexer lexer;
 	cout << ss_get_root_path() + TEST_FILE_PATH << endl;
