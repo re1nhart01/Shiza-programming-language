@@ -195,7 +195,8 @@ int main (int argc, char **argv) {
 #endif
   shiza::FS fs;
   shiza::Lexer lexer;
-  std::ifstream file = fs.read("C:\\Users\\eugen\\GitHub\\Shiza-programming-language\\src\\main.bmx");
+	cout << ss_get_root_path() + TEST_FILE_PATH << endl;
+	std::ifstream file = fs.read(ss_get_root_path() + TEST_FILE_PATH);
   lexer.runLexicalAnalysis(file);
   shiza::__INHERIT_NODE__ root = shiza::tester();
   cout << root.name << endl;
