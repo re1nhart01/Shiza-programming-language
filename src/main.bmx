@@ -6,6 +6,6 @@ do main[] (
  abobaasklka += 54;
  log `#( aboba )`;
  log "               you are not a father                    ";
- log `
+ log `asdasd`
 
 )

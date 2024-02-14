@@ -6,7 +6,7 @@
 #include <string>
 #include <vector>
 
-// NO EVAL SUKA BLYAT
+// NO EVAL SKA BLYAT
 
 namespace shiza::ast {
 

@@ -74,4 +74,12 @@ static inline std::vector<std::string> splitWithSpaces(const std::string& input)
     return result;
 }
 
+static inline bool compareKeywords(std::string node_string, std::string token) {
+    std::string copy_node_string = node_string;
+    std::string copy_token = token;
+    shiza::helpers::trim(copy_node_string);
+    shiza::helpers::trim(copy_token);
+    return copy_node_string == copy_token;
+}
+
 }

@@ -17,5 +17,4 @@ namespace shiza::tokens {
     const std::string ASSIGNMENT = "=";
     const std::string STRING_LITERAL = "\"";
     const std::string MULTILINE_STRING_LITERAL = "'";
-    }
-
+}
