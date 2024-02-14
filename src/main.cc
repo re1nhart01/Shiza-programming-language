@@ -2,6 +2,7 @@
 #include "helpers.cc"
 #include "global.cc"
 #include "keywords.cc"
+#include "playground.cc";
 #include <cstdio>
 #include <functional>
 #include <iostream>
@@ -53,11 +54,36 @@ class Linker {
 };
 
 class LexerFunc {
-    virtual ~LexerFunc();
-    static __INHERIT_NODE__ lex_package_node(vector<std::string> currLine);
+public:
+    virtual ~LexerFunc() = delete;
+    static __INHERIT_NODE__* lex_package_node(vector<std::string> currLine);
+    static __INHERIT_NODE__* lex_define_node(vector<std::string> currLine);
+    static __INHERIT_NODE__* lex_assignment_node(vector<std::string> currLine);
+    static __INHERIT_NODE__* lex_func_node(vector<std::string> currLine);
+    static __INHERIT_NODE__* lex_log_node(vector<std::string> currLine);
 };
 
-class Lexer {
+    __INHERIT_NODE__* LexerFunc::lex_package_node(vector<std::string> currLine) {
+        return nullptr;
+    }
+
+    __INHERIT_NODE__* LexerFunc::lex_define_node(vector<std::string> currLine) {
+        return nullptr;
+    }
+
+    __INHERIT_NODE__* LexerFunc::lex_assignment_node(vector<std::string> currLine) {
+        return nullptr;
+    }
+
+    __INHERIT_NODE__* LexerFunc::lex_func_node(vector<std::string> currLine) {
+        return nullptr;
+    }
+
+    __INHERIT_NODE__* LexerFunc::lex_log_node(vector<std::string> currLine) {
+        return nullptr;
+    }
+
+    class Lexer {
 public:
   std::vector<void*> tokenList;
   int col;
@@ -65,7 +91,7 @@ public:
   bool isStringOpened;
   bool isBracketOpened;
   Lexer() {
-    this->tokenList = std::vector<void*>{ 0 };
+    this->tokenList = std::vector<void*>{ nullptr };
     this->row = 0;
     this->col = 0;
     this->isStringOpened = false;
@@ -204,18 +230,22 @@ int main (int argc, char **argv) {
 #ifdef __DEV__
     ss_UNSAFE_clear_console();
     cout << ">>> SHIZA DEVELOPMENT MODE <<<" << endl;
+#ifdef __PLAYGROUND__
+    shiza::playground::run_test();
+    return 0;
+#endif
 #endif
 
-  shiza::FS fs;
-  shiza::Lexer lexer;
-	cout << ss_get_root_path() + TEST_FILE_PATH << endl;
-	std::ifstream file = fs.read(ss_get_root_path() + TEST_FILE_PATH);
-  lexer.runLexicalAnalysis(file);
-  shiza::__INHERIT_NODE__ root = shiza::tester();
-  cout << root.name << endl;
-  shiza::ast::ParamNode* node = static_cast<shiza::ast::ParamNode*>(root.value);
-  cout << node->name << endl;
-	return 0;
+    shiza::FS fs;
+    shiza::Lexer lexer;
+    cout << ss_get_root_path() + TEST_FILE_PATH << endl;
+    std::ifstream file = fs.read(ss_get_root_path() + TEST_FILE_PATH);
+    lexer.runLexicalAnalysis(file);
+    shiza::__INHERIT_NODE__ root = shiza::tester();
+    cout << root.name << endl;
+    shiza::ast::ParamNode* node = static_cast<shiza::ast::ParamNode*>(root.value);
+    cout << node->name << endl;
+    return 0;
 }
 
 
