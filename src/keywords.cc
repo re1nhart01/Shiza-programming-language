@@ -1,10 +1,11 @@
-#ifndef AST_H
-#define AST_H
-#endif
 #include <string>
 #include <vector>
 
 namespace shiza::tokens {
+    const std::vector<std::string> RESERVED_SYMBOLS = { "!", "!!", "?", "??", "^", "|", "$", "$$", "*", "/", "&", "-", "%", "%%", "+", "**" };
+    const std::string COMMENT_SINGLE_LINE = "$";
+    const std::string COMMENT_MULTILINE_START = "$$";
+    const std::string COMMENT_MULTILINE_MIDDLE = "*";
     const std::string DEFINE_KEYWORD = "define";
     const std::string PACKAGE_KEYWORD = "package";
     const std::string FUNCTION_KEYWORD = "do";

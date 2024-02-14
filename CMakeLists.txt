@@ -10,7 +10,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # I think we would like here to compile everything, everything could contain main file so we can test that
 # For now it would be only main
-add_executable(shiza src/main.cc)
+add_executable(shiza src/main.cc
+		src/argv/opts.cc)
 
 # I guess this sucks, but for now let it be. We will have to change it later
 

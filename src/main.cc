@@ -50,7 +50,7 @@ namespace shiza {
 
     class Lexer {
     public:
-        std::vector<void*> tokenList;
+        std::vector<__INHERIT_NODE__*> tokenList;
         std::basic_ifstream<char>* stream;
         std::string currentFileName;
         int col;
@@ -60,7 +60,7 @@ namespace shiza {
         Lexer() {
             this->stream = { nullptr };
             this->currentFileName = "main.bmx";
-            this->tokenList = std::vector<void*>{ nullptr };
+            this->tokenList = std::vector<__INHERIT_NODE__*>{ nullptr };
             this->row = 0;
             this->col = 0;
             this->isStringOpened = false;
@@ -86,14 +86,23 @@ namespace shiza {
     };
 
     __INHERIT_NODE__* LexerFunc::lex_package_node(vector<std::string> currLine) {
+        for (std::string line_node : currLine) {
+
+        }
         return nullptr;
     }
 
     __INHERIT_NODE__* LexerFunc::lex_define_node(vector<std::string> currLine) {
+        for (std::string line_node : currLine) {
+
+        }
         return nullptr;
     }
 
     __INHERIT_NODE__* LexerFunc::lex_assignment_node(vector<std::string> currLine) {
+        for (std::string line_node : currLine) {
+
+        }
         return nullptr;
     }
 
@@ -102,6 +111,9 @@ namespace shiza {
     }
 
     __INHERIT_NODE__* LexerFunc::lex_log_node(vector<std::string> currLine) {
+        for (std::string line_node : currLine) {
+
+        }
         return nullptr;
     }
 
@@ -172,23 +184,36 @@ namespace shiza {
            shiza::helpers::trim(curr);
          }
          // hint: this vector contains separated string with spaces like: "an 100 apples" ["an", " ", "100", " ", "apples"]
-         vector<std::string> currentLineByNodes = shiza::helpers::splitWithSpaces(curr);
-         ss_print_vector(currentLineByNodes);
-         for (std::string node : currentLineByNodes) {
+         vector<std::string> current_line_by_nodes = shiza::helpers::split_with_spaces(curr);
+         ss_print_vector(current_line_by_nodes);
+         for (std::string node : current_line_by_nodes) {
             if (!this->isStringOpened) {
               if (node != " " && node != ";") {
                   Lexer::col+= node.size();
-                  if (shiza::helpers::compareKeywords(node, shiza::tokens::PACKAGE_KEYWORD)) {
-                      LexerFunc::lex_package_node(currentLineByNodes);
-                  } else if (shiza::helpers::compareKeywords(node, shiza::tokens::FUNCTION_KEYWORD)) {
-                      LexerFunc::lex_func_node(currentLineByNodes, this->stream);
+                  //hint: comment section ->
+                  if (shiza::helpers::compare_keywords_multiple(node, vector<std::string>{
+                          shiza::tokens::COMMENT_SINGLE_LINE,
+                          shiza::tokens::COMMENT_MULTILINE_MIDDLE,
+                          shiza::tokens::COMMENT_MULTILINE_START,
+                  })) {
+                      cout << shiza::tokens::COMMENT_SINGLE_LINE << endl;
+                      continue;
+                  } else if (shiza::helpers::compare_keywords(node, shiza::tokens::PACKAGE_KEYWORD)) {
+                      this->tokenList.push_back(LexerFunc::lex_package_node(current_line_by_nodes));
+                      cout << shiza::tokens::PACKAGE_KEYWORD << endl;
+                  } else if (shiza::helpers::compare_keywords(node, shiza::tokens::FUNCTION_KEYWORD)) {
+                      this->tokenList.push_back(LexerFunc::lex_func_node(current_line_by_nodes, this->stream));
                       this->isBracketOpened = true;
-                  } else if (shiza::helpers::compareKeywords(node, shiza::tokens::DEFINE_KEYWORD)) {
-                      LexerFunc::lex_define_node(currentLineByNodes);
-                  } else if (shiza::helpers::compareKeywords(node, shiza::tokens::ASSIGNMENT)) {
-                      LexerFunc::lex_assignment_node(currentLineByNodes);
-                  } else if (shiza::helpers::compareKeywords(node, shiza::tokens::LOGGIN_KEYWORD)) {
-                      LexerFunc::lex_log_node(currentLineByNodes);
+                      cout << shiza::tokens::FUNCTION_KEYWORD << endl;
+                  } else if (shiza::helpers::compare_keywords(node, shiza::tokens::DEFINE_KEYWORD)) {
+                      this->tokenList.push_back(LexerFunc::lex_define_node(current_line_by_nodes));
+                      cout << shiza::tokens::DEFINE_KEYWORD << endl;
+                  } else if (shiza::helpers::compare_keywords(node, shiza::tokens::ASSIGNMENT)) {
+                      this->tokenList.push_back(LexerFunc::lex_assignment_node(current_line_by_nodes));
+                      cout << shiza::tokens::ASSIGNMENT << endl;
+                  } else if (shiza::helpers::compare_keywords(node, shiza::tokens::LOGGIN_KEYWORD)) {
+                      this->tokenList.push_back(LexerFunc::lex_log_node(current_line_by_nodes));
+                      cout << shiza::tokens::LOGGIN_KEYWORD << endl;
                   }
               } else {
                   Lexer::col++;
@@ -206,7 +231,10 @@ namespace shiza {
 
 
 
-    class Parser {};
+    class Parser {
+    public:
+        void run_parser(const vector<__INHERIT_NODE__> token_list);
+    };
 
     class Error {
     protected:
