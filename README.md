@@ -16,9 +16,9 @@ Shiza is a high-level programming language designed for simplicity, readability,
 To start using Shiza, follow these steps:
 
 1. **Installation**: Shiza compiler can be downloaded and installed from the official website [link to be inserted].
-   2. **Hello World**: Write your first Shiza program by creating a file with a `.bmx` extension, and then write the following code:
+1. **Hello World**: Write your first Shiza program by creating a file with a `.bmx` extension, and then write the following code:
 
-       ```shiza
+       ```
            package main;
 
            do main[] (
@@ -27,14 +27,14 @@ To start using Shiza, follow these steps:
            )
        ```
 
-3. **Compile and Run**: Compile your Shiza program using the Shiza compiler:
+1. **Compile and Run**: Compile your Shiza program using the Shiza compiler:
 
     ```bash
-    shiza your_program.bmx
+        shiza your_program.bmx
     ```
 
 
-4. **Explore Documentation**: Refer to the official Shiza documentation [link to be inserted] for more information on language features, syntax, and examples.
+1. **Explore Documentation**: Refer to the official Shiza documentation [link to be inserted] for more information on language features, syntax, and examples.
 
 ## Syntax Example
 
@@ -47,3 +47,4 @@ Here's an example of a simple "Hello, World!" program in Shiza:
                 define intEr = "Hello World!";
                 log `#( intEr )`;
            )
+```
