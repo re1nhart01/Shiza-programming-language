@@ -129,6 +129,30 @@ shiza/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/shiza.dir/build.make CMakeFiles/shiza.dir/build
 .PHONY : shiza/fast
 
+src/argv/opts.o: src/argv/opts.cc.o
+.PHONY : src/argv/opts.o
+
+# target to build an object file
+src/argv/opts.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/shiza.dir/build.make CMakeFiles/shiza.dir/src/argv/opts.cc.o
+.PHONY : src/argv/opts.cc.o
+
+src/argv/opts.i: src/argv/opts.cc.i
+.PHONY : src/argv/opts.i
+
+# target to preprocess a source file
+src/argv/opts.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/shiza.dir/build.make CMakeFiles/shiza.dir/src/argv/opts.cc.i
+.PHONY : src/argv/opts.cc.i
+
+src/argv/opts.s: src/argv/opts.cc.s
+.PHONY : src/argv/opts.s
+
+# target to generate assembly for a file
+src/argv/opts.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/shiza.dir/build.make CMakeFiles/shiza.dir/src/argv/opts.cc.s
+.PHONY : src/argv/opts.cc.s
+
 src/main.o: src/main.cc.o
 .PHONY : src/main.o
 
@@ -162,6 +186,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... shiza"
+	@echo "... src/argv/opts.o"
+	@echo "... src/argv/opts.i"
+	@echo "... src/argv/opts.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
