@@ -3,7 +3,7 @@
 #include <iostream>
 #include <ctime>
 
-namespace shiza::log {
+namespace shiza {
     enum Level {
         DEBUG,
         INFO,
@@ -17,7 +17,10 @@ namespace shiza::log {
             Log() {}
             ~Log();
             void log(Level level, const std::string& message);
-            void fatal(const std::string& message) { log(FATAL, message); };
+            void fatal(const std::string& message) {
+                log(FATAL, message);
+                exit(1191);
+            };
             void error(const std::string& message) { log(ERROR, message); };
             void warning(const std::string& message) { log(WARNING, message); };
             void info(const std::string& message) { log(INFO, message); };
@@ -39,7 +42,6 @@ namespace shiza::log {
         this->log(INFO, "Logger destroyed");
         std::cout.flush();
     }
-
     inline Log *get_log() {
         static std::unique_ptr<Log> glog = std::make_unique<Log>();
         return glog.get();

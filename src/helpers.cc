@@ -4,6 +4,7 @@
 #include <sstream>
 #include <functional>
 #include <cctype>
+#include <iostream>
 
 
 namespace shiza::helpers {
@@ -105,7 +106,10 @@ static inline bool contains_non_alphanumeric(const std::string& str) {
 
 static inline bool validate_naming_variable(std::string var_word) {
     //check is variable contains inappropriate element
-    for (unsigned int i; i < var_word.length(); i++) {
+    if (var_word.empty() || var_word == " ") {
+        return false;
+    }
+    for (int i = 0; i < var_word.length(); i++) {
         std::string char_as_string(1, var_word[i]);
         if (!contains_non_alphanumeric(var_word) || !isdigit(char_as_string[0])) {
             return true;
@@ -124,4 +128,16 @@ static inline bool contains(std::string str, char findable) {
     return false;
 }
 
+}
+
+
+namespace shiza {
+    static inline std::string template_str(const std::string args...) {
+        std::string a;
+        for (int i = 0; i < args.length(); i++) {
+            a += std::to_string(args[i]) + " ";
+        }
+
+        return a;
+    }
 }

@@ -38,21 +38,21 @@ a @= 5454; // short form
         define b: int8 = 65457565 - a;
     )
 
-    loop a @= 54; a <= 1000; a++ {
+    loop a @= 54; a <= 1000; a++ (
 
-    }
+    )
 
-    forever {
+    forever (
 
-    }
+    )
 
-    forever a {
+    forever a (
 
-    }
+    )
 
-    loop a in ()int8{1,2,3,4,5} {
+    loop a in ()int8{1,2,3,4,5} (
 
-    } 
+    )
 
     loop key, value in ()int8{1,2,3,4,5} {
 
